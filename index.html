@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тамари Басилашвили — Психолог</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-tertiary: #111111;
+    --text-primary: #ffffff;
+    --text-secondary: #888888;
+    --accent: #d4af37;
+    --accent-light: #f4d03f;
+    --border: #222222;
+    --glow: rgba(212, 175, 55, 0.3);
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Animated Background */
+  .bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+    animation: bgPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes bgPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+  }
+
+  .grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+    100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+  }
+
+  /* Header */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    animation: slideDown 0.8s ease;
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+  }
+
+  .logo span {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+
+  .toggle-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 20px var(--glow);
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  /* Hero Section - NEW with Photo */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 150px 0 100px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    animation: heroGlow 6s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  @keyframes heroGlow {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Photo Container */
+  .hero-photo {
+    position: relative;
+    animation: fadeInLeft 1.2s ease;
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .photo-frame {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 3/4;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 60px rgba(212, 175, 55, 0.2);
+  }
+
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border: 1px solid var(--accent);
+    opacity: 0.3;
+    animation: framePulse 3s ease-in-out infinite;
+  }
+
+  @keyframes framePulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.02); }
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: all 0.5s ease;
+  }
+
+  .photo-frame:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  .photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px 30px 30px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  }
+
+  .photo-name {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+  }
+
+  .photo-name span {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .photo-title {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Decorative Elements */
+  .photo-decor {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--accent);
+    opacity: 0.3;
+  }
+
+  .photo-decor.top-right {
+    top: -20px;
+    right: -20px;
+    animation: rotate 20s linear infinite;
+  }
+
+  .photo-decor.bottom-left {
+    bottom: -20px;
+    left: -20px;
+    animation: rotate 20s linear infinite reverse;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Hero Text */
+  .hero-text-content {
+    animation: fadeInRight 1.2s ease 0.3s backwards;
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    display: block;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+  }
+
+  .hero-title em {
+    color: var(--accent);
+    font-style: normal;
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-title em::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    animation: lineGrow 1.5s ease 1s backwards;
+  }
+
+  @keyframes lineGrow {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+    padding: 18px 40px;
+    border: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px var(--glow);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    padding: 18px 40px;
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  /* Sections */
+  section {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .section-label {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+
+  .section-title em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  /* About */
+  .about {
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    animation: rotate 30s linear infinite;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-image {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .about-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.1) 100%);
+    z-index: 1;
+    transition: all 0.5s ease;
+  }
+
+  .about-image:hover::before {
+    background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.2) 100%);
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: all 0.5s ease;
+  }
+
+  .about-image:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  .about-text h2 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    line-height: 1.3;
+  }
+
+  .about-text p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+
+  .stats {
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    padding-top: 50px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    color: var(--accent);
+    font-weight: 300;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Gallery Section */
+  .gallery {
+    background: var(--bg-primary);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    aspect-ratio: 3/4;
+    cursor: pointer;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: all 0.5s ease;
+  }
+
+  .gallery-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+  }
+
+  .gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    padding: 30px 20px 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+  }
+
+  .gallery-caption h4 {
+    color: var(--accent);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .gallery-caption p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+
+  /* Services */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .service-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .service-card:hover::before {
+    opacity: 0.05;
+  }
+
+  .service-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover .service-icon {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  .service-card h3 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+  }
+
+  .service-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+  }
+
+  .service-price {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+
+  /* Approach */
+  .approach {
+    background: var(--bg-secondary);
+    position: relative;
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .approach-item {
+    text-align: center;
+    padding: 40px 30px;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .approach-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .approach-item:hover::before {
+    transform: scaleX(1);
+  }
+
+  .approach-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+  }
+
+  .approach-number {
+    font-size: 4rem;
+    color: var(--accent);
+    opacity: 0.3;
+    font-weight: 300;
+    margin-bottom: 20px;
+    display: block;
+    transition: all 0.3s ease;
+  }
+
+  .approach-item:hover .approach-number {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .approach-item h4 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+  }
+
+  .approach-item p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Testimonials */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .testimonial {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 50px;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .testimonial::before {
+    content: '"';
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 8rem;
+    color: var(--accent);
+    opacity: 0.1;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  .testimonial:hover {
+    border-color: var(--accent);
+    transform: translateX(10px);
+  }
+
+  .testimonial p {
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--bg-tertiary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--bg-primary);
+  }
+
+  .author-info h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .author-info span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  /* Contact */
+  .contact {
+    background: var(--bg-secondary);
+    position: relative;
+  }
+
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+  }
+
+  .contact-info > p {
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .contact-list {
+    list-style: none;
+    margin-bottom: 40px;
+  }
+
+  .contact-list li {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-list li:hover {
+    transform: translateX(10px);
+  }
+
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+  }
+
+  .contact-list li:hover .contact-icon {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 20px var(--glow);
+  }
+
+  .contact-list a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1rem;
+  }
+
+  .contact-list a:hover {
+    color: var(--accent);
+  }
+
+  .contact-form {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    padding: 50px;
+  }
+
+  .form-group {
+    margin-bottom: 25px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 15px 20px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: none;
+    padding: 18px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px var(--glow);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .footer-developer {
+    color: var(--accent);
+    margin-top: 10px;
+    font-size: 0.85rem;
+  }
+
+  /* Scroll Reveal Animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .nav-links {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      flex-direction: column;
+      padding: 40px;
+      gap: 30px;
+      transform: translateY(-150%);
+      transition: transform 0.3s ease;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.active {
+      transform: translateY(0);
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 50px;
+      text-align: center;
+    }
+
+    .hero-photo {
+      order: -1;
+    }
+
+    .photo-frame {
+      max-width: 350px;
+    }
+
+    .hero-buttons {
+      justify-content: center;
+    }
+
+    .about-grid,
+    .contact-wrapper {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-grid,
+    .approach-grid,
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats {
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+    }
+
+    .contact-form {
+      padding: 30px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .photo-frame {
+      max-width: 280px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-animation"></div>
+<div class="grid-overlay"></div>
+
+<!-- 
+  HEADER
+  - Логотип: Тамари Басилашвили
+  - Навигация по разделам
+  - Переключатель языка
+-->
+<header>
+  <nav class="nav container">
+    <div class="logo">Тамари <span>Басилашвили</span></div>
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" data-i18n="nav_about">Обо мне</a></li>
+      <li><a href="#gallery" data-i18n="nav_gallery">Галерея</a></li>
+      <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
+      <li><a href="#approach" data-i18n="nav_approach">Подход</a></li>
+      <li><a href="#testimonials" data-i18n="nav_reviews">Отзывы</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Контакты</a></li>
+    </ul>
+    <div class="controls">
+      <button class="toggle-btn" id="langToggle">EN</button>
+    </div>
+  </nav>
+</header>
+
+<!-- 
+  HERO SECTION
+  - Фото психолога слева
+  - Текст справа
+  - Анимации появления
+-->
+<section class="hero">
+  <div class="hero-content">
+    <!-- Фото психолога -->
+    <div class="hero-photo">
+      <div class="photo-decor top-right"></div>
+      <div class="photo-decor bottom-left"></div>
+      <div class="photo-frame">
+        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото психолога -->
+        <img src="C:\Users\Sanek\Desktop\пс\file\4.jpg" alt="Тамари Басилашвили">
+        <div class="photo-overlay">
+          <div class="photo-name">Тамари <span>Басилашвили</span></div>
+          <div class="photo-title" data-i18n="photo_title">Практикующий психолог</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Текст -->
+    <div class="hero-text-content">
+      <span class="hero-subtitle" data-i18n="hero_subtitle">Профессиональная психологическая помощь</span>
+      <h1 class="hero-title" data-i18n="hero_title">
+        Пространство для <em>внутренней тишины</em> и ясности
+      </h1>
+      <p class="hero-description" data-i18n="hero_text">
+        Психологическая поддержка в бережном и безопасном пространстве. Помогу найти опору, услышать себя и пройти через сложные периоды жизни.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary" data-i18n="btn_primary">Записаться на встречу</a>
+        <a href="#about" class="btn-secondary" data-i18n="btn_secondary">Узнать больше</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  ABOUT SECTION
+  - Фото психолога
+  - Текст о специалисте
+  - Статистика (лет практики, клиентов, сессий)
+-->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото психолога -->
+        <img src="C:\Users\Sanek\Desktop\пс\file\3.jpg" alt="Тамари Басилашвили">
+      </div>
+      <div class="about-text reveal">
+        <span class="section-label" data-i18n="about_label">Обо мне</span>
+        <h2 data-i18n="about_title">Путь к себе начинается с первого шага</h2>
+        <p data-i18n="about_p1">
+          Меня зовут Тамари. Я практикующий психолог с более чем восьмилетним опытом работы. Работаю в интегративном подходе, сочетая когнитивно-поведенческую терапию, гештальт-подход и элементы телесно-ориентированной терапии.
+        </p>
+        <p data-i18n="about_p2">
+          Верю, что каждый человек обладает внутренними ресурсами для изменений. Моя задача — создать условия, в которых эти ресурсы могут раскрыться. Работаю с тревогой, выгоранием, отношениями, самооценкой и жизненными кризисами.
+        </p>
+        <div class="stats">
+          <div class="stat-item">
+            <!-- РЕДАКТИРОВАТЬ: Количество лет практики -->
+            <span class="stat-number" data-target="8">0</span>
+            <span class="stat-label" data-i18n="stat1">лет практики</span>
+          </div>
+          <div class="stat-item">
+            <!-- РЕДАКТИРОВАТЬ: Количество клиентов -->
+            <span class="stat-number" data-target="500">0</span>
+            <span class="stat-label" data-i18n="stat2">клиентов</span>
+          </div>
+          <div class="stat-item">
+            <!-- РЕДАКТИРОВАТЬ: Количество проведённых сессий -->
+            <span class="stat-number" data-target="1200">0</span>
+            <span class="stat-label" data-i18n="stat3">сессий</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  GALLERY SECTION
+  - 4 фотографии с подписями
+  - ЗАМЕНИТЬ: Замените src на ваши фотографии
+-->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label" data-i18n="gallery_label">Галерея</span>
+      <h2 class="section-title" data-i18n="gallery_title">Рабочее <em>пространство</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <!-- ФОТО 1: Кабинет -->
+      <div class="gallery-item reveal">
+        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото 1 (кабинет) -->
+        <img src="C:\Users\Sanek\Desktop\пс\file\cab.png" alt="Кабинет">
+        <div class="gallery-caption">
+          <h4>Рабочий кабинет</h4>
+          <p>Уютное пространство для консультаций</p>
+        </div>
+      </div>
+      
+      <!-- ФОТО 2: Процесс работы -->
+      <div class="gallery-item reveal">
+        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото 2 (процесс) -->
+        <img src="C:\Users\Sanek\Desktop\пс\file\atmo.png" alt="Консультация">
+        <div class="gallery-caption">
+          <h4>Индивидуальная работа</h4>
+          <p>Бережный подход к каждому клиенту</p>
+        </div>
+      </div>
+      
+      <!-- ФОТО 3: Атмосфера -->
+      <div class="gallery-item reveal">
+        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото 3 (атмосфера) -->
+        <img src="C:\Users\Sanek\Desktop\пс\file\atm1.png" alt="Атмосфера">
+        <div class="gallery-caption">
+          <h4>Атмосфера доверия</h4>
+          <p>Безопасное пространство для диалога</p>
+        </div>
+      </div>
+      
+      <!-- ФОТО 4: Портрет -->
+      <div class="gallery-item reveal">
+        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото 4 (портрет) -->
+        <img src="C:\Users\Sanek\Desktop\пс\file\kons.jpg" alt="Портрет">
+        <div class="gallery-caption">
+          <h4>Тамари Басилашвили</h4>
+          <p>Практикующий психолог</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  SERVICES SECTION
+  - Карточки услуг с ценами
+  - РЕДАКТИРОВАТЬ: Цены в service-price
+-->
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label" data-i18n="services_label">Направления</span>
+      <h2 class="section-title" data-i18n="services_title">С чем я <em>работаю</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon"></span>
+        <h3 data-i18n="s1_title">Тревога и стресс</h3>
+        <p data-i18n="s1_desc">Помогу разобраться с причинами тревоги, научиться управлять стрессом и вернуть ощущение внутреннего покоя.</p>
+        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 1 -->
+        <div class="service-price" data-price="1">4 500 ₽ / 60 мин</div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon"></span>
+        <h3 data-i18n="s2_title">Самооценка</h3>
+        <p data-i18n="s2_desc">Работа с внутренним критиком, синдромом самозванца, поиском опоры и принятием себя.</p>
+        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 2 -->
+        <div class="service-price" data-price="2">4 500 ₽ / 60 мин</div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🤍</span>
+        <h3 data-i18n="s3_title">Отношения</h3>
+        <p data-i18n="s3_desc">Разберём паттерны в отношениях, научимся выстраивать границы и строить здоровую коммуникацию.</p>
+        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 3 -->
+        <div class="service-price" data-price="3">4 500 ₽ / 60 мин</div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🔥</span>
+        <h3 data-i18n="s4_title">Выгорание</h3>
+        <p data-i18n="s4_desc">Помогу восстановить ресурс, переосмыслить приоритеты и найти баланс между работой и жизнью.</p>
+        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 4 -->
+        <div class="service-price" data-price="4">4 500 ₽ / 60 мин</div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon"></span>
+        <h3 data-i18n="s5_title">Кризисы</h3>
+        <p data-i18n="s5_desc">Поддержка в периоды потерь, перемен, переломных моментов. Помогу пройти через трудности.</p>
+        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 5 -->
+        <div class="service-price" data-price="5">4 500 ₽ / 60 мин</div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon"></span>
+        <h3 data-i18n="s6_title">Самопознание</h3>
+        <p data-i18n="s6_desc">Глубинная работа с собой: ценности, смыслы, жизненные сценарии и путь к аутентичности.</p>
+        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 6 -->
+        <div class="service-price" data-price="6">4 500 ₽ / 60 мин</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  APPROACH SECTION
+  - 4 этапа работы
+-->
+<section class="approach" id="approach">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label" data-i18n="approach_label">Подход</span>
+      <h2 class="section-title" data-i18n="approach_title">Как проходит <em>работа</em></h2>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-item reveal">
+        <span class="approach-number">01</span>
+        <h4 data-i18n="a1_title">Знакомство</h4>
+        <p data-i18n="a1_desc">Бесплатная 20-минутная беседа, чтобы понять ваш запрос и определиться.</p>
+      </div>
+      <div class="approach-item reveal">
+        <span class="approach-number">02</span>
+        <h4 data-i18n="a2_title">Первая сессия</h4>
+        <p data-i18n="a2_desc">Детально обсуждаем запрос, формируем цели и план работы.</p>
+      </div>
+      <div class="approach-item reveal">
+        <span class="approach-number">03</span>
+        <h4 data-i18n="a3_title">Работа</h4>
+        <p data-i18n="a3_desc">Встречаемся 1 раз в неделю. Исследуем, экспериментируем, интегрируем.</p>
+      </div>
+      <div class="approach-item reveal">
+        <span class="approach-number">04</span>
+        <h4 data-i18n="a4_title">Результат</h4>
+        <p data-i18n="a4_desc">Отслеживаем прогресс. Вы обретаете инструменты для опоры.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  TESTIMONIALS SECTION
+  - Отзывы клиентов
+-->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label" data-i18n="reviews_label">Отзывы</span>
+      <h2 class="section-title" data-i18n="reviews_title">Что говорят <em>клиенты</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <p data-i18n="t1">Анна создала для меня пространство, в котором я впервые за долгие годы почувствовала, что могу быть собой. Её спокойствие и профессионализм помогли мне пройти через сложный период.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">М</div>
+          <div class="author-info">
+            <h4 data-i18n="t1_name">Мария, 34 года</h4>
+            <span data-i18n="t1_info">6 месяцев работы</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p data-i18n="t2">Пришёл с запросом по выгоранию, а получил гораздо больше — переосмысление всей жизни. Работа с Анной стала поворотной точкой. Благодарен за бережность.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">Д</div>
+          <div class="author-info">
+            <h4 data-i18n="t2_name">Дмитрий, 41 год</h4>
+            <span data-i18n="t2_info">10 месяцев работы</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p data-i18n="t3">Я долго не решалась пойти к психологу. Анна помогла почувствовать себя в безопасности с первой же встречи. Научилась слышать свои потребности.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">Е</div>
+          <div class="author-info">
+            <h4 data-i18n="t3_name">Екатерина, 28 лет</h4>
+            <span data-i18n="t3_info">4 месяца работы</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p data-i18n="t4">Работа с Анной — это путешествие к себе. Каждый сеанс приносит инсайты. Я стала увереннее в себе и спокойнее относиться к жизни.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">О</div>
+          <div class="author-info">
+            <h4 data-i18n="t4_name">Ольга, 37 лет</h4>
+            <span data-i18n="t4_info">1 год работы</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  CONTACT SECTION
+  - Контактная информация
+  - Форма обратной связи
+-->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-info reveal">
+        <span class="section-label" data-i18n="contact_label">Контакты</span>
+        <h2 data-i18n="contact_title">Начнём путь вместе</h2>
+        <p data-i18n="contact_desc">Свяжитесь со мной любым удобным способом. Я отвечу в течение 24 часов.</p>
+        <ul class="contact-list">
+          <li>
+            <div class="contact-icon"></div>
+            <a href="tel:+79606861225">+7 (960) 686-12-25</a>
+          </li>
+          <li>
+            <div class="contact-icon">✉️</div>
+            <a href="mailto:tamaribasilashvili@mail.ru">tamaribasilashvili@mail.ru</a>
+          </li>
+          <li>
+            <div class="contact-icon">VK</div>
+            <a href="https://vk.ru/id359302070" target="_blank">VK</a>
+          </li>
+          <li>
+            <div class="contact-icon">IG</div>
+            <a href="https://instagram.com/basilashvili_noblesoul" target="_blank">@basilashvili_noblesoul</a>
+          </li>
+          <li>
+            <div class="contact-icon">MX</div>
+            <a href="https://max.ru/join/m6QkFogdWBTOyf_pfEsHgWYQkdHJ0pNBxsLdmF7asgY" target="_blank">Max</a>
+          </li>
+        </ul>
+      </div>
+      <form class="contact-form reveal" onsubmit="handleSubmit(event)" action="mailto:tamaribasilashvili@mail.ru" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label data-i18n="form_name">Ваше имя</label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_contact">Email или телефон</label>
+          <input type="text" name="contact" required>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_type">Тип обращения</label>
+          <select name="type" required>
+            <option value="" data-i18n="form_type_select">Выберите тип</option>
+            <option value="consultation" data-i18n="form_type_consultation">Запрос на консультацию</option>
+            <option value="question" data-i18n="form_type_question">Вопрос</option>
+            <option value="other" data-i18n="form_type_other">Другое</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_message">Сообщение</label>
+          <textarea name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn" data-i18n="form_submit">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  FOOTER
+  - Копирайт
+  - Разработчик: PixDesign 2026
+-->
+<footer>
+  <div class="container">
+    <p data-i18n="footer">© 2026 Тамари Басилашвили. Все права защищены.</p>
+    <p class="footer-developer">Разработано PixDesign 2026</p>
+  </div>
+</footer>
+
+<script>
+  //Translations for Russian and English
+  const translations = {
+    ru: {
+      photo_title: 'Практикующий психолог',
+      nav_about: 'Обо мне',
+      nav_gallery: 'Галерея',
+      nav_services: 'Услуги',
+      nav_approach: 'Подход',
+      nav_reviews: 'Отзывы',
+      nav_contact: 'Контакты',
+      hero_subtitle: 'Профессиональная психологическая помощь',
+      hero_title: 'Пространство для <em>внутренней тишины</em> и ясности',
+      hero_text: 'Психологическая поддержка в бережном и безопасном пространстве. Помогу найти опору, услышать себя и пройти через сложные периоды жизни.',
+      btn_primary: 'Записаться на встречу',
+      btn_secondary: 'Узнать больше',
+      about_label: 'Обо мне',
+      about_title: 'Путь к себе начинается с первого шага',
+      about_p1: 'Меня зовут Тамари. Я практикующий психолог с более чем восьмилетним опытом работы. Работаю в интегративном подходе, сочетая когнитивно-поведенческую терапию, гештальт-подход и элементы телесно-ориентированной терапии.',
+      about_p2: 'Верю, что каждый человек обладает внутренними ресурсами для изменений. Моя задача — создать условия, в которых эти ресурсы могут раскрыться. Работаю с тревогой, выгоранием, отношениями, самооценкой и жизненными кризисами.',
+      stat1: 'лет практики',
+      stat2: 'клиентов',
+      stat3: 'сессий',
+      gallery_label: 'Галерея',
+      gallery_title: 'Рабочее <em>пространство</em>',
+      services_label: 'Направления',
+      services_title: 'С чем я <em>работаю</em>',
+      s1_title: 'Тревога и стресс',
+      s1_desc: 'Помогу разобраться с причинами тревоги, научиться управлять стрессом и вернуть ощущение внутреннего покоя.',
+      s2_title: 'Самооценка',
+      s2_desc: 'Работа с внутренним критиком, синдромом самозванца, поиском опоры и принятием себя.',
+      s3_title: 'Отношения',
+      s3_desc: 'Разберём паттерны в отношениях, научимся выстраивать границы и строить здоровую коммуникацию.',
+      s4_title: 'Выгорание',
+      s4_desc: 'Помогу восстановить ресурс, переосмыслить приоритеты и найти баланс между работой и жизнью.',
+      s5_title: 'Кризисы',
+      s5_desc: 'Поддержка в периоды потерь, перемен, переломных моментов. Помогу пройти через трудности.',
+      s6_title: 'Самопознание',
+      s6_desc: 'Глубинная работа с собой: ценности, смыслы, жизненные сценарии и путь к аутентичности.',
+      approach_label: 'Подход',
+      approach_title: 'Как проходит <em>работа</em>',
+      a1_title: 'Знакомство',
+      a1_desc: 'Бесплатная 20-минутная беседа, чтобы понять ваш запрос и определиться.',
+      a2_title: 'Первая сессия',
+      a2_desc: 'Детально обсуждаем запрос, формируем цели и план работы.',
+      a3_title: 'Работа',
+      a3_desc: 'Встречаемся 1 раз в неделю. Исследуем, экспериментируем, интегрируем.',
+      a4_title: 'Результат',
+      a4_desc: 'Отслеживаем прогресс. Вы обретаете инструменты для опоры.',
+      reviews_label: 'Отзывы',
+      reviews_title: 'Что говорят <em>клиенты</em>',
+      t1: 'Анна создала для меня пространство, в котором я впервые за долгие годы почувствовала, что могу быть собой. Её спокойствие и профессионализм помогли мне пройти через сложный период.',
+      t1_name: 'Мария, 34 года',
+      t1_info: '6 месяцев работы',
+      t2: 'Пришёл с запросом по выгоранию, а получил гораздо больше — переосмысление всей жизни. Работа с Анной стала поворотной точкой. Благодарен за бережность.',
+      t2_name: 'Дмитрий, 41 год',
+      t2_info: '10 месяцев работы',
+      t3: 'Я долго не решалась пойти к психологу. Анна помогла почувствовать себя в безопасности с первой же встречи. Научилась слышать свои потребности.',
+      t3_name: 'Екатерина, 28 лет',
+      t3_info: '4 месяца работы',
+      t4: 'Работа с Анной — это путешествие к себе. Каждый сеанс приносит инсайты. Я стала увереннее в себе и спокойнее относиться к жизни.',
+      t4_name: 'Ольга, 37 лет',
+      t4_info: '1 год работы',
+      contact_label: 'Контакты',
+      contact_title: 'Начнём путь вместе',
+      contact_desc: 'Свяжитесь со мной любым удобным способом. Я отвечу в течение 24 часов.',
+      form_name: 'Ваше имя',
+      form_contact: 'Email или телефон',
+      form_type: 'Тип обращения',
+      form_type_select: 'Выберите тип',
+      form_type_consultation: 'Запрос на консультацию',
+      form_type_question: 'Вопрос',
+      form_type_other: 'Другое',
+      form_message: 'Сообщение',
+      form_submit: 'Отправить заявку',
+      footer: '© 2025 Тамари Басилашвили. Все права защищены.'
+    },
+    en: {
+      photo_title: 'Practicing Psychologist',
+      nav_about: 'About',
+      nav_gallery: 'Gallery',
+      nav_services: 'Services',
+      nav_approach: 'Approach',
+      nav_reviews: 'Reviews',
+      nav_contact: 'Contact',
+      hero_subtitle: 'Professional Psychological Help',
+      hero_title: 'Space for <em>inner peace</em> and clarity',
+      hero_text: 'Psychological support in a gentle and safe environment. I will help you find your footing, hear yourself, and navigate difficult periods of life.',
+      btn_primary: 'Book a Session',
+      btn_secondary: 'Learn More',
+      about_label: 'About Me',
+      about_title: 'The journey begins with the first step',
+      about_p1: 'My name is Tamari. I am a practicing psychologist with over eight years of experience. I work in an integrative approach, combining cognitive-behavioral therapy, gestalt approach, and elements of body-oriented therapy.',
+      about_p2: 'I believe that every person has inner resources for change. My task is to create conditions in which these resources can unfold. I work with anxiety, burnout, relationships, self-esteem, and life crises.',
+      stat1: 'years practice',
+      stat2: 'clients',
+      stat3: 'sessions',
+      gallery_label: 'Gallery',
+      gallery_title: 'Working <em>Space</em>',
+      services_label: 'Services',
+      services_title: 'What I <em>work with</em>',
+      s1_title: 'Anxiety & Stress',
+      s1_desc: 'I will help you understand the causes of anxiety, learn to manage stress, and regain a sense of inner peace.',
+      s2_title: 'Self-esteem',
+      s2_desc: 'Working with the inner critic, imposter syndrome, finding support, and self-acceptance.',
+      s3_title: 'Relationships',
+      s3_desc: "We'll explore relationship patterns, learn to set boundaries, and build healthy communication.",
+      s4_title: 'Burnout',
+      s4_desc: 'I will help you restore resources, rethink priorities, and find balance between work and life.',
+      s5_title: 'Crises',
+      s5_desc: 'Support during periods of loss, change, and turning points. I will help you get through difficulties.',
+      s6_title: 'Self-discovery',
+      s6_desc: 'Deep work with yourself: values, meanings, life scripts, and the path to authenticity.',
+      approach_label: 'Approach',
+      approach_title: 'How the <em>work</em> unfolds',
+      a1_title: 'Introduction',
+      a1_desc: 'A free 20-minute conversation to understand your request and decide if we are a good fit.',
+      a2_title: 'First Session',
+      a2_desc: 'We discuss your request in detail, set goals and a work plan.',
+      a3_title: 'Work',
+      a3_desc: 'We meet once a week. We explore, experiment, and integrate.',
+      a4_title: 'Result',
+      a4_desc: 'We track progress. You gain tools for independent support.',
+      reviews_label: 'Reviews',
+      reviews_title: 'What <em>clients</em> say',
+      t1: 'Anna created a space for me where I felt for the first time in many years that I could be myself. Her calmness and professionalism helped me through a difficult period.',
+      t1_name: 'Maria, 34',
+      t1_info: '6 months of work',
+      t2: 'I came with a burnout request, but got much more — a rethinking of my whole life. Working with Anna was a turning point. Grateful for the gentleness.',
+      t2_name: 'Dmitry, 41',
+      t2_info: '10 months of work',
+      t3: 'I hesitated for a long time to see a psychologist. Anna helped me feel safe from the very first meeting. I learned to hear my needs.',
+      t3_name: 'Ekaterina, 28',
+      t3_info: '4 months of work',
+      t4: 'Working with Anna is a journey to yourself. Every session brings insights. I have become more confident and calmer about life.',
+      t4_name: 'Olga, 37',
+      t4_info: '1 year of work',
+      contact_label: 'Contact',
+      contact_title: "Let's start together",
+      contact_desc: 'Contact me in any convenient way. I will respond within 24 hours.',
+      form_name: 'Your Name',
+      form_contact: 'Email or Phone',
+      form_type: 'Inquiry Type',
+      form_type_select: 'Select type',
+      form_type_consultation: 'Consultation request',
+      form_type_question: 'Question',
+      form_type_other: 'Other',
+      form_message: 'Message',
+      form_submit: 'Send Request',
+      footer: '© 2026 Tamari Basilashvili. All rights reserved.'
+    }
+  };
+
+  let currentLang = 'ru';
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+    document.getElementById('langToggle').textContent = lang === 'ru' ? 'EN' : 'RU';
+  }
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    applyLanguage(currentLang === 'ru' ? 'en' : 'ru');
+  });
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+
+  // Scroll reveal
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        
+        // Animate numbers
+        if (entry.target.querySelector('.stat-number')) {
+          entry.target.querySelectorAll('.stat-number').forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            animateNumber(stat, target);
+          });
+        }
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function animateNumber(element, target) {
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target + (target > 100 ? '+' : '');
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current);
+      }
+    }, 30);
+  }
+
+  // Form handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    const original = btn.textContent;
+    btn.textContent = currentLang === 'ru' ? '✓ Отправлено' : '✓ Sent';
+    btn.style.background = '#4CAF50';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
