@@ -198,7 +198,7 @@
     transform: rotate(-45deg) translate(7px, -6px);
   }
 
-  /* Hero Section - NEW with Photo */
+  /* Hero Section */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -238,21 +238,14 @@
     padding: 0 24px;
   }
 
-  /* Photo Container */
   .hero-photo {
     position: relative;
     animation: fadeInLeft 1.2s ease;
   }
 
   @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
   }
 
   .photo-frame {
@@ -321,7 +314,6 @@
     text-transform: uppercase;
   }
 
-  /* Decorative Elements */
   .photo-decor {
     position: absolute;
     width: 100px;
@@ -347,20 +339,13 @@
     to { transform: rotate(360deg); }
   }
 
-  /* Hero Text */
   .hero-text-content {
     animation: fadeInRight 1.2s ease 0.3s backwards;
   }
 
   @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
   }
 
   .hero-subtitle {
@@ -372,12 +357,27 @@
     display: block;
   }
 
+  /* Новая анимация для заголовка */
   .hero-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 300;
     line-height: 1.1;
     margin-bottom: 30px;
     letter-spacing: -1px;
+    animation: blurIn 1.5s ease 0.4s backwards;
+  }
+
+  @keyframes blurIn {
+    from { 
+      opacity: 0; 
+      filter: blur(10px); 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      filter: blur(0); 
+      transform: translateY(0); 
+    }
   }
 
   .hero-title em {
@@ -1147,12 +1147,6 @@
 <div class="bg-animation"></div>
 <div class="grid-overlay"></div>
 
-<!-- 
-  HEADER
-  - Логотип: Тамари Басилашвили
-  - Навигация по разделам
-  - Переключатель языка
--->
 <header>
   <nav class="nav container">
     <div class="logo">Тамари <span>Басилашвили</span></div>
@@ -1175,20 +1169,12 @@
   </nav>
 </header>
 
-<!-- 
-  HERO SECTION
-  - Фото психолога слева
-  - Текст справа
-  - Анимации появления
--->
 <section class="hero">
   <div class="hero-content">
-    <!-- Фото психолога -->
     <div class="hero-photo">
       <div class="photo-decor top-right"></div>
       <div class="photo-decor bottom-left"></div>
       <div class="photo-frame">
-        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото психолога -->
         <img src="file/4.jpg" alt="Тамари Басилашвили">
         <div class="photo-overlay">
           <div class="photo-name">Тамари <span>Басилашвили</span></div>
@@ -1197,14 +1183,14 @@
       </div>
     </div>
     
-    <!-- Текст -->
     <div class="hero-text-content">
       <span class="hero-subtitle" data-i18n="hero_subtitle">Профессиональная психологическая помощь</span>
       <h1 class="hero-title" data-i18n="hero_title">
-        Пространство для <em>внутренней тишины</em> и ясности
+        Тамари Басилашвили
+Акцент на жизнь без страха<em>Авторский метод</em>
       </h1>
       <p class="hero-description" data-i18n="hero_text">
-        Психологическая поддержка в бережном и безопасном пространстве. Помогу найти опору, услышать себя и пройти через сложные периоды жизни.
+        Индивидуальные консультации, где вы сможете безопасно прожить свои чувства, снять напряжение и найти ясность. Вместе мы выстроим новый сценарий, в котором вы почувствуете себя живой и свободной.
       </p>
       <div class="hero-buttons">
         <a href="#contact" class="btn-primary" data-i18n="btn_primary">Записаться на встречу</a>
@@ -1214,41 +1200,35 @@
   </div>
 </section>
 
-<!-- 
-  ABOUT SECTION
-  - Фото психолога
-  - Текст о специалисте
-  - Статистика (лет практики, клиентов, сессий)
--->
 <section class="about" id="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-image reveal">
-        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото психолога -->
-        <img src="file\3.jpg" alt="Тамари Басилашвили">
+        <img src="file\3.jpg"Тамари Басилашвили">
       </div>
       <div class="about-text reveal">
         <span class="section-label" data-i18n="about_label">Обо мне</span>
         <h2 data-i18n="about_title">Путь к себе начинается с первого шага</h2>
         <p data-i18n="about_p1">
-          Меня зовут Тамари. Я практикующий психолог с более чем восьмилетним опытом работы. Работаю в интегративном подходе, сочетая когнитивно-поведенческую терапию, гештальт-подход и элементы телесно-ориентированной терапии.
+          Я не пришла в эту профессию из учебников. Я пришла к ней из жизни. Из понимания, как иногда бывает тяжело, одиноко и запутанно. Как может не хватать одного — безопасного места, где тебя выслушают без осуждения, попыток дать совет или сказать «возьми себя в руки». Места, где можно просто быть. И начать разматывать тот клубок, который кажется таким тугим.
         </p>
-        <p data-i18n="about_p2">
-          Верю, что каждый человек обладает внутренними ресурсами для изменений. Моя задача — создать условия, в которых эти ресурсы могут раскрыться. Работаю с тревогой, выгоранием, отношениями, самооценкой и жизненными кризисами.
+        <p data-i18n="about_p2" style="margin-top: 20px;">
+          Я хочу помогать справляться. Это мое самое важное слово.<br><br>
+          Справляться с тревогой, которая сжимает горло.<br>
+          С выгоранием, которое крадёт цвета.<br>
+          С чувством потерянности, когда не понимаешь, куда идти.<br>
+          С трудными отношениями, в которых не находишь своего места.
         </p>
         <div class="stats">
           <div class="stat-item">
-            <!-- РЕДАКТИРОВАТЬ: Количество лет практики -->
             <span class="stat-number" data-target="8">0</span>
             <span class="stat-label" data-i18n="stat1">лет практики</span>
           </div>
           <div class="stat-item">
-            <!-- РЕДАКТИРОВАТЬ: Количество клиентов -->
             <span class="stat-number" data-target="500">0</span>
             <span class="stat-label" data-i18n="stat2">клиентов</span>
           </div>
           <div class="stat-item">
-            <!-- РЕДАКТИРОВАТЬ: Количество проведённых сессий -->
             <span class="stat-number" data-target="1200">0</span>
             <span class="stat-label" data-i18n="stat3">сессий</span>
           </div>
@@ -1258,11 +1238,6 @@
   </div>
 </section>
 
-<!-- 
-  GALLERY SECTION
-  - 4 фотографии с подписями
-  - ЗАМЕНИТЬ: Замените src на ваши фотографии
--->
 <section class="gallery" id="gallery">
   <div class="container">
     <div class="section-header reveal">
@@ -1270,39 +1245,28 @@
       <h2 class="section-title" data-i18n="gallery_title">Рабочее <em>пространство</em></h2>
     </div>
     <div class="gallery-grid">
-      <!-- ФОТО 1: Кабинет -->
       <div class="gallery-item reveal">
-        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото 1 (кабинет) -->
         <img src="file\cab.png" alt="Кабинет">
         <div class="gallery-caption">
           <h4>Рабочий кабинет</h4>
           <p>Уютное пространство для консультаций</p>
         </div>
       </div>
-      
-      <!-- ФОТО 2: Процесс работы -->
       <div class="gallery-item reveal">
-        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото 2 (процесс) -->
         <img src="file\atmo.png" alt="Консультация">
         <div class="gallery-caption">
           <h4>Индивидуальная работа</h4>
           <p>Бережный подход к каждому клиенту</p>
         </div>
       </div>
-      
-      <!-- ФОТО 3: Атмосфера -->
       <div class="gallery-item reveal">
-        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото 3 (атмосфера) -->
-        <img src="file\atm1.png" alt="Атмосфера">
+        <img src="file\atm1.png" alt=" alt="Атмосфера">
         <div class="gallery-caption">
           <h4>Атмосфера доверия</h4>
           <p>Безопасное пространство для диалога</p>
         </div>
       </div>
-      
-      <!-- ФОТО 4: Портрет -->
       <div class="gallery-item reveal">
-        <!-- ЗАМЕНИТЬ: Вставьте ссылку на фото 4 (портрет) -->
         <img src="file\kons.jpg" alt="Портрет">
         <div class="gallery-caption">
           <h4>Тамари Басилашвили</h4>
@@ -1313,11 +1277,6 @@
   </div>
 </section>
 
-<!-- 
-  SERVICES SECTION
-  - Карточки услуг с ценами
-  - РЕДАКТИРОВАТЬ: Цены в service-price
--->
 <section id="services">
   <div class="container">
     <div class="section-header reveal">
@@ -1329,52 +1288,42 @@
         <span class="service-icon"></span>
         <h3 data-i18n="s1_title">Тревога и стресс</h3>
         <p data-i18n="s1_desc">Помогу разобраться с причинами тревоги, научиться управлять стрессом и вернуть ощущение внутреннего покоя.</p>
-        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 1 -->
-        <div class="service-price" data-price="1">4 500 ₽ / 60 мин</div>
+        <div class="service-price" data-price="1">5 000 ₽ / 60 мин</div>
       </div>
       <div class="service-card reveal">
         <span class="service-icon"></span>
         <h3 data-i18n="s2_title">Самооценка</h3>
         <p data-i18n="s2_desc">Работа с внутренним критиком, синдромом самозванца, поиском опоры и принятием себя.</p>
-        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 2 -->
-        <div class="service-price" data-price="2">4 500 ₽ / 60 мин</div>
+        <div class="service-price" data-price="2">5 000 ₽ / 60 мин</div>
       </div>
       <div class="service-card reveal">
         <span class="service-icon">🤍</span>
         <h3 data-i18n="s3_title">Отношения</h3>
         <p data-i18n="s3_desc">Разберём паттерны в отношениях, научимся выстраивать границы и строить здоровую коммуникацию.</p>
-        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 3 -->
-        <div class="service-price" data-price="3">4 500 ₽ / 60 мин</div>
+        <div class="service-price" data-price="3">5 000 ₽ / 60 мин</div>
       </div>
       <div class="service-card reveal">
         <span class="service-icon">🔥</span>
         <h3 data-i18n="s4_title">Выгорание</h3>
         <p data-i18n="s4_desc">Помогу восстановить ресурс, переосмыслить приоритеты и найти баланс между работой и жизнью.</p>
-        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 4 -->
-        <div class="service-price" data-price="4">4 500 ₽ / 60 мин</div>
+        <div class="service-price" data-price="4">5 000 ₽ / 60 мин</div>
       </div>
       <div class="service-card reveal">
         <span class="service-icon"></span>
         <h3 data-i18n="s5_title">Кризисы</h3>
         <p data-i18n="s5_desc">Поддержка в периоды потерь, перемен, переломных моментов. Помогу пройти через трудности.</p>
-        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 5 -->
-        <div class="service-price" data-price="5">4 500 ₽ / 60 мин</div>
+        <div class="service-price" data-price="5">5 000 ₽ / 60 мин</div>
       </div>
       <div class="service-card reveal">
         <span class="service-icon"></span>
         <h3 data-i18n="s6_title">Самопознание</h3>
         <p data-i18n="s6_desc">Глубинная работа с собой: ценности, смыслы, жизненные сценарии и путь к аутентичности.</p>
-        <!-- РЕДАКТИРОВАТЬ: Цена за услугу 6 -->
-        <div class="service-price" data-price="6">4 500 ₽ / 60 мин</div>
+        <div class="service-price" data-price="6">5 000 ₽ / 60 мин</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 
-  APPROACH SECTION
-  - 4 этапа работы
--->
 <section class="approach" id="approach">
   <div class="container">
     <div class="section-header reveal">
@@ -1406,10 +1355,6 @@
   </div>
 </section>
 
-<!-- 
-  TESTIMONIALS SECTION
-  - Отзывы клиентов
--->
 <section id="testimonials">
   <div class="container">
     <div class="section-header reveal">
@@ -1418,7 +1363,7 @@
     </div>
     <div class="testimonials-grid">
       <div class="testimonial reveal">
-        <p data-i18n="t1">Анна создала для меня пространство, в котором я впервые за долгие годы почувствовала, что могу быть собой. Её спокойствие и профессионализм помогли мне пройти через сложный период.</p>
+        <p data-i18n="t1">Тамари создала для меня пространство, в котором я впервые за долгие годы почувствовала, что могу быть собой. Её спокойствие и профессионализм помогли мне пройти через сложный период.</p>
         <div class="testimonial-author">
           <div class="author-avatar">М</div>
           <div class="author-info">
@@ -1428,17 +1373,17 @@
         </div>
       </div>
       <div class="testimonial reveal">
-        <p data-i18n="t2">Пришёл с запросом по выгоранию, а получил гораздо больше — переосмысление всей жизни. Работа с Анной стала поворотной точкой. Благодарен за бережность.</p>
+        <p data-i18n="t2">Из-за своих многочисленных травм я 3 года работала частной няней. Каждый раз вспоминала ошибки, которые мама совершала со мной. И вспоминала, как было плохо мне и не поступала так с чьим-то ребенком. Тем самым я исцелилась сама.</p>
         <div class="testimonial-author">
           <div class="author-avatar">Д</div>
           <div class="author-info">
-            <h4 data-i18n="t2_name">Дмитрий, 41 год</h4>
+            <h4 data-i18n="t2_name">Виктория, 36 лет</h4>
             <span data-i18n="t2_info">10 месяцев работы</span>
           </div>
         </div>
       </div>
       <div class="testimonial reveal">
-        <p data-i18n="t3">Я долго не решалась пойти к психологу. Анна помогла почувствовать себя в безопасности с первой же встречи. Научилась слышать свои потребности.</p>
+        <p data-i18n="t3">Я долго не решалась пойти к психологу. Тамари помогла почувствовать себя в безопасности с первой же встречи. Научилась слышать свои потребности.</p>
         <div class="testimonial-author">
           <div class="author-avatar">Е</div>
           <div class="author-info">
@@ -1448,7 +1393,7 @@
         </div>
       </div>
       <div class="testimonial reveal">
-        <p data-i18n="t4">Работа с Анной — это путешествие к себе. Каждый сеанс приносит инсайты. Я стала увереннее в себе и спокойнее относиться к жизни.</p>
+        <p data-i18n="t4">Работа с Тамари — это путешествие к себе. Каждый сеанс приносит инсайты. Я стала увереннее в себе и спокойнее относиться к жизни.</p>
         <div class="testimonial-author">
           <div class="author-avatar">О</div>
           <div class="author-info">
@@ -1457,15 +1402,60 @@
           </div>
         </div>
       </div>
+      <div class="testimonial reveal">
+        <p data-i18n="t5">Обратилась к Тамари с сильной тревогой, которая мешала работать и спать. Уже после нескольких сессий почувствовала облегчение. Учусь управлять своим состоянием, спасибо за профессионализм и чуткость.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">Е</div>
+          <div class="author-info">
+            <h4 data-i18n="t5_name">Елена, 31 год</h4>
+            <span data-i18n="t5_info">3 месяца работы</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p data-i18n="t6">Долгое время игнорировал свое выгорание, думал, что справлюсь сам. Тамари помогла увидеть корень проблемы и постепенно выстроить новый, здоровый режим жизни. Очень благодарен.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">А</div>
+          <div class="author-info">
+            <h4 data-i18n="t6_name">Алексей, 45 лет</h4>
+            <span data-i18n="t6_info">8 месяцев работы</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p data-i18n="t7">Благодаря работе с психологом я наконец-то научилась выстраивать личные границы и говорить «нет» без чувства вины. Мои отношения стали намного гармоничнее.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">С</div>
+          <div class="author-info">
+            <h4 data-i18n="t7_name">Светлана, 29 лет</h4>
+            <span data-i18n="t7_info">5 месяцев работы</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p data-i18n="t8">Пришел с запросом о потере смысла и низкой самооценке. Тамари создала невероятно безопасную атмосферу, где можно быть собой. Это был важный этап в моей жизни.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">И</div>
+          <div class="author-info">
+            <h4 data-i18n="t8_name">Игорь, 38 лет</h4>
+            <span data-i18n="t8_info">4 месяца работы</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p data-i18n="t9">В непростой период жизненных перемен Тамари стала для меня настоящей опорой. Ее мудрость, спокойствие и глубокие инсайты помогли мне принять верные решения.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">Н</div>
+          <div class="author-info">
+            <h4 data-i18n="t9_name">Наталья, 52 года</h4>
+            <span data-i18n="t9_info">1 год работы</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 
-  CONTACT SECTION
-  - Контактная информация
-  - Форма обратной связи
--->
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-wrapper">
@@ -1481,6 +1471,10 @@
           <li>
             <div class="contact-icon">✉️</div>
             <a href="mailto:tamaribasilashvili@mail.ru">tamaribasilashvili@mail.ru</a>
+          </li>
+          <li>
+            <div class="contact-icon">TG</div>
+            <a href="https://t.me/pobedaTamari" target="_blank">Telegram: @pobedaTamari</a>
           </li>
           <li>
             <div class="contact-icon">VK</div>
@@ -1524,11 +1518,6 @@
   </div>
 </section>
 
-<!-- 
-  FOOTER
-  - Копирайт
-  - Разработчик: PixDesign 2026
--->
 <footer>
   <div class="container">
     <p data-i18n="footer">© 2026 Тамари Басилашвили. Все права защищены.</p>
@@ -1537,7 +1526,6 @@
 </footer>
 
 <script>
-  //Translations for Russian and English
   const translations = {
     ru: {
       photo_title: 'Практикующий психолог',
@@ -1548,14 +1536,14 @@
       nav_reviews: 'Отзывы',
       nav_contact: 'Контакты',
       hero_subtitle: 'Профессиональная психологическая помощь',
-      hero_title: 'Пространство для <em>внутренней тишины</em> и ясности',
-      hero_text: 'Психологическая поддержка в бережном и безопасном пространстве. Помогу найти опору, услышать себя и пройти через сложные периоды жизни.',
+      hero_title: 'Твоя внутренняя территория <em>под моей бережной защитой</em>',
+      hero_text: 'Индивидуальные консультации, где вы сможете безопасно прожить свои чувства, снять напряжение и найти ясность. Вместе мы выстроим новый сценарий, в котором вы почувствуете себя живой и свободной.',
       btn_primary: 'Записаться на встречу',
       btn_secondary: 'Узнать больше',
       about_label: 'Обо мне',
       about_title: 'Путь к себе начинается с первого шага',
-      about_p1: 'Меня зовут Тамари. Я практикующий психолог с более чем восьмилетним опытом работы. Работаю в интегративном подходе, сочетая когнитивно-поведенческую терапию, гештальт-подход и элементы телесно-ориентированной терапии.',
-      about_p2: 'Верю, что каждый человек обладает внутренними ресурсами для изменений. Моя задача — создать условия, в которых эти ресурсы могут раскрыться. Работаю с тревогой, выгоранием, отношениями, самооценкой и жизненными кризисами.',
+      about_p1: 'Я не пришла в эту профессию из учебников. Я пришла к ней из жизни. Из понимания, как иногда бывает тяжело, одиноко и запутанно. Как может не хватать одного — безопасного места, где тебя выслушают без осуждения, попыток дать совет или сказать «возьми себя в руки». Места, где можно просто быть. И начать разматывать тот клубок, который кажется таким тугим.',
+      about_p2: 'Я хочу помогать справляться. Это мое самое важное слово.<br><br>Справляться с тревогой, которая сжимает горло.<br>С выгоранием, которое крадёт цвета.<br>С чувством потерянности, когда не понимаешь, куда идти.<br>С трудными отношениями, в которых не находишь своего места.',
       stat1: 'лет практики',
       stat2: 'клиентов',
       stat3: 'сессий',
@@ -1587,18 +1575,33 @@
       a4_desc: 'Отслеживаем прогресс. Вы обретаете инструменты для опоры.',
       reviews_label: 'Отзывы',
       reviews_title: 'Что говорят <em>клиенты</em>',
-      t1: 'Анна создала для меня пространство, в котором я впервые за долгие годы почувствовала, что могу быть собой. Её спокойствие и профессионализм помогли мне пройти через сложный период.',
+      t1: 'Тамари создала для меня пространство, в котором я впервые за долгие годы почувствовала, что могу быть собой. Её спокойствие и профессионализм помогли мне пройти через сложный период.',
       t1_name: 'Мария, 34 года',
       t1_info: '6 месяцев работы',
-      t2: 'Пришёл с запросом по выгоранию, а получил гораздо больше — переосмысление всей жизни. Работа с Анной стала поворотной точкой. Благодарен за бережность.',
-      t2_name: 'Дмитрий, 41 год',
-      t2_info: '10 месяцев работы',
-      t3: 'Я долго не решалась пойти к психологу. Анна помогла почувствовать себя в безопасности с первой же встречи. Научилась слышать свои потребности.',
+      t2: 'Из-за своих многочисленных травм я 3 года работала частной няней. Каждый раз вспоминала ошибки, которые мама совершала со мной. И вспоминала, как было плохо мне и не поступала так с чьим-то ребенком. Тем самым я исцелилась сама.',
+      t2_name: 'Виктория, 36 год',
+      t2_info: '5 месяцев работы',
+      t3: 'Я долго не решалась пойти к психологу. Тамари помогла почувствовать себя в безопасности с первой же встречи. Научилась слышать свои потребности.',
       t3_name: 'Екатерина, 28 лет',
       t3_info: '4 месяца работы',
-      t4: 'Работа с Анной — это путешествие к себе. Каждый сеанс приносит инсайты. Я стала увереннее в себе и спокойнее относиться к жизни.',
+      t4: 'Работа с Тамари — это путешествие к себе. Каждый сеанс приносит инсайты. Я стала увереннее в себе и спокойнее относиться к жизни.',
       t4_name: 'Ольга, 37 лет',
       t4_info: '1 год работы',
+      t5: 'Обратилась к Тамари с сильной тревогой, которая мешала работать и спать. Уже после нескольких сессий почувствовала облегчение. Учусь управлять своим состоянием, спасибо за профессионализм и чуткость.',
+      t5_name: 'Елена, 31 год',
+      t5_info: '3 месяца работы',
+      t6: 'Долгое время игнорировал свое выгорание, думал, что справлюсь сам. Тамари помогла увидеть корень проблемы и постепенно выстроить новый, здоровый режим жизни. Очень благодарен.',
+      t6_name: 'Алексей, 45 лет',
+      t6_info: '8 месяцев работы',
+      t7: 'Благодаря работе с психологом я наконец-то научилась выстраивать личные границы и говорить «нет» без чувства вины. Мои отношения стали намного гармоничнее.',
+      t7_name: 'Светлана, 29 лет',
+      t7_info: '5 месяцев работы',
+      t8: 'Пришел с запросом о потере смысла и низкой самооценке. Тамари создала невероятно безопасную атмосферу, где можно быть собой. Это был важный этап в моей жизни.',
+      t8_name: 'Игорь, 38 лет',
+      t8_info: '4 месяца работы',
+      t9: 'В непростой период жизненных перемен Тамари стала для меня настоящей опорой. Ее мудрость, спокойствие и глубокие инсайты помогли мне принять верные решения.',
+      t9_name: 'Наталья, 52 года',
+      t9_info: '1 год работы',
       contact_label: 'Контакты',
       contact_title: 'Начнём путь вместе',
       contact_desc: 'Свяжитесь со мной любым удобным способом. Я отвечу в течение 24 часов.',
@@ -1611,7 +1614,7 @@
       form_type_other: 'Другое',
       form_message: 'Сообщение',
       form_submit: 'Отправить заявку',
-      footer: '© 2025 Тамари Басилашвили. Все права защищены.'
+      footer: '© 2026 Тамари Басилашвили. Все права защищены.'
     },
     en: {
       photo_title: 'Practicing Psychologist',
@@ -1622,14 +1625,14 @@
       nav_reviews: 'Reviews',
       nav_contact: 'Contact',
       hero_subtitle: 'Professional Psychological Help',
-      hero_title: 'Space for <em>inner peace</em> and clarity',
-      hero_text: 'Psychological support in a gentle and safe environment. I will help you find your footing, hear yourself, and navigate difficult periods of life.',
+      hero_title: 'Your inner territory under my <em>gentle protection</em>',
+      hero_text: 'Individual consultations where you can safely experience your feelings, relieve tension, and find clarity. Together we will build a new scenario in which you will feel alive and free.',
       btn_primary: 'Book a Session',
       btn_secondary: 'Learn More',
       about_label: 'About Me',
       about_title: 'The journey begins with the first step',
-      about_p1: 'My name is Tamari. I am a practicing psychologist with over eight years of experience. I work in an integrative approach, combining cognitive-behavioral therapy, gestalt approach, and elements of body-oriented therapy.',
-      about_p2: 'I believe that every person has inner resources for change. My task is to create conditions in which these resources can unfold. I work with anxiety, burnout, relationships, self-esteem, and life crises.',
+      about_p1: 'I didn\'t come to this profession from textbooks. I came to it from life. From understanding how hard, lonely, and confusing it can sometimes be. How you might lack just one thing — a safe place where you will be heard without judgment, attempts to give advice, or being told to "pull yourself together". A place where you can simply be. And start unraveling that knot that seems so tight.',
+      about_p2: 'I want to help you cope. This is my most important word.<br><br>Cope with the anxiety that tightens your throat.<br>With burnout that steals the colors.<br>With the feeling of being lost when you don\'t know where to go.<br>With difficult relationships where you can\'t find your place.',
       stat1: 'years practice',
       stat2: 'clients',
       stat3: 'sessions',
@@ -1661,18 +1664,33 @@
       a4_desc: 'We track progress. You gain tools for independent support.',
       reviews_label: 'Reviews',
       reviews_title: 'What <em>clients</em> say',
-      t1: 'Anna created a space for me where I felt for the first time in many years that I could be myself. Her calmness and professionalism helped me through a difficult period.',
+      t1: 'Tamari created a space for me where I felt for the first time in many years that I could be myself. Her calmness and professionalism helped me through a difficult period.',
       t1_name: 'Maria, 34',
       t1_info: '6 months of work',
-      t2: 'I came with a burnout request, but got much more — a rethinking of my whole life. Working with Anna was a turning point. Grateful for the gentleness.',
+      t2: 'I came with a burnout request, but got much more — a rethinking of my whole life. Working with Tamari was a turning point. Grateful for the gentleness.',
       t2_name: 'Dmitry, 41',
       t2_info: '10 months of work',
-      t3: 'I hesitated for a long time to see a psychologist. Anna helped me feel safe from the very first meeting. I learned to hear my needs.',
+      t3: 'I hesitated for a long time to see a psychologist. Tamari helped me feel safe from the very first meeting. I learned to hear my needs.',
       t3_name: 'Ekaterina, 28',
       t3_info: '4 months of work',
-      t4: 'Working with Anna is a journey to yourself. Every session brings insights. I have become more confident and calmer about life.',
+      t4: 'Working with Tamari is a journey to yourself. Every session brings insights. I have become more confident and calmer about life.',
       t4_name: 'Olga, 37',
       t4_info: '1 year of work',
+      t5: 'I came to Tamari with severe anxiety that interfered with work and sleep. After just a few sessions, I felt relief. I am learning to manage my condition, thank you for your professionalism and sensitivity.',
+      t5_name: 'Elena, 31',
+      t5_info: '3 months of work',
+      t6: 'For a long time I ignored my burnout, thinking I could handle it myself. Tamari helped me see the root of the problem and gradually build a new, healthy lifestyle. Very grateful.',
+      t6_name: 'Alexey, 45',
+      t6_info: '8 months of work',
+      t7: 'Thanks to working with a psychologist, I finally learned to set personal boundaries and say "no" without guilt. My relationships have become much more harmonious.',
+      t7_name: 'Svetlana, 29',
+      t7_info: '5 months of work',
+      t8: 'I came with a request about loss of meaning and low self-esteem. Tamari created an incredibly safe atmosphere where I could be myself. It was an important stage in my life.',
+      t8_name: 'Igor, 38',
+      t8_info: '4 months of work',
+      t9: 'During a difficult period of life changes, Tamari became a true support for me. Her wisdom, calmness, and deep insights helped me make the right decisions.',
+      t9_name: 'Natalia, 52',
+      t9_info: '1 year of work',
       contact_label: 'Contact',
       contact_title: "Let's start together",
       contact_desc: 'Contact me in any convenient way. I will respond within 24 hours.',
@@ -1705,7 +1723,6 @@
     applyLanguage(currentLang === 'ru' ? 'en' : 'ru');
   });
 
-  // Mobile menu
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
   
@@ -1721,7 +1738,6 @@
     });
   });
 
-  // Scroll reveal
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -1732,7 +1748,6 @@
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
         
-        // Animate numbers
         if (entry.target.querySelector('.stat-number')) {
           entry.target.querySelectorAll('.stat-number').forEach(stat => {
             const target = parseInt(stat.getAttribute('data-target'));
@@ -1759,7 +1774,6 @@
     }, 30);
   }
 
-  // Form handler
   function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('.submit-btn');
